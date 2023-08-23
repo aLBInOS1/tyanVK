@@ -95,6 +95,9 @@
           unityI=unityInstance;
           //вк
           vkBridge.send('VKWebAppInit')
+          vkBridge.send('VKWebAppShowBannerAd', { 
+            banner_location: 'bottom'
+          })
           console.log("sdk inited");
           auth();
           sendSDKtype();
