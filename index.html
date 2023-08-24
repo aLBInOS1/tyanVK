@@ -188,6 +188,16 @@
         });
       }
 
+      function callFriends(){
+           vkBridge.send('VKWebAppShowInviteBox');
+      }
+
+      function joinGroup(){
+         vkBridge.send('VKWebAppJoinGroup', {
+             group_id: 194094435
+        });
+      }
+
       function sendSDKtype() { unityI.SendMessage('YandexSDK','SetSDKtype',"0"); }
 
     </script>
