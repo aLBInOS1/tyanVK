@@ -73,6 +73,8 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
+      var showAdBanner=false;
+
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
         // Avoid draining fillrate performance on mobile devices,
@@ -81,6 +83,7 @@
       } else {
         canvas.style.width = "100%";
         canvas.style.height = "100%";
+        showAdBanner=true;
       }
       canvas.style.background = "url(Build/MDGbuild.jpg.unityweb') center / cover";
       loadingBar.style.display = "block";
@@ -102,6 +105,12 @@
           console.log("sdk inited");
           auth();
           sendSDKtype();
+          if (showAdBanner==true) {
+              vkBridge.send('VKWebAppShowBannerAd', { 
+                 banner_location: 'bottom',
+                 can_close: false
+             });
+          }
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
