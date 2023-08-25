@@ -107,7 +107,7 @@
                  can_close: false
              });
           }
-          //else { vkBridge.subscribe(eventHandler); }
+          else bridge.subscribe(eventHandler);
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
