@@ -107,6 +107,7 @@
                  can_close: false
              });
           }
+          else { vkBridge.subscribe(eventHandler); }
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
@@ -119,6 +120,18 @@
     </script>
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
+
+    function eventHandler(e) {  //need for stop audio in android app
+      const { type, data } = e.detail;
+      switch(type) {
+        case 'VKWebAppViewHide':
+          unityI.SendMessage('YandexSDK', 'DisableSounds');
+          break;
+        case 'VKWebAppViewRestore': 
+          unityI.SendMessage('YandexSDK', 'EnableSounds');
+          break;
+        }
+    }
 
     function auth(){
         console.log("auth...");
